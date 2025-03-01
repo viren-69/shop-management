@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="KisanMitra - Connecting farmers and customers directly for fresh produce" />
+    <title>KisanMitra - Farm Fresh Products</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary: #4caf50;
+        --primary-dark: #3b8c3f;
+        --primary-light: #e8f5e9;
+        --secondary: #ff6b6b;
+        --text-dark: #333333;
+        --text-light: #666666;
+        --background: #f9f9f9;
+        --white: #ffffff;
+        --gray-light: #f1f1f1;
+        --gray: #dddddd;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --radius: 8px;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background-color: var(--background);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo::before {
+        content: "🌾";
+        font-size: 1.5rem;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 1.25rem;
+        align-items: center;
+      }
+
+      .nav-menu a {
+        color: var(--white);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius);
+        transition: var(--transition);
+        font-weight: 500;
+      }
+
+      .nav-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .nav-menu a.active {
+        background-color: rgba(255, 255, 255, 0.25);
+        font-weight: 600;
+      }
+
+      .cart-icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .cart-icon::before {
+        content: "🛒";
+        font-size: 1.25rem;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--secondary);
+        color: var(--white);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        flex: 1;
+      }
+
+      .login-container,
+      .crop-list,
+      .cart,
+      .bill-modal {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        margin-top: 1.5rem;
+      }
+
+      .login-container {
+        max-width: 450px;
+        margin: 3rem auto;
+        text-align: center;
+      }
+
+      .login-container h2 {
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+      }
+
+      .form-group {
+        margin-bottom: 1.25rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        text-align: left;
+      }
+
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--gray);
+        border-radius: var(--radius);
+        font-family: inherit;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      button {
+        background-color: var(--primary);
+        color: var(--white);
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+        margin-top: 0.5rem;
+      }
+
+      button:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .btn-secondary {
+        background-color: var(--white);
+        color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--primary-light);
+      }
+
+      .btn-danger {
+        background-color: var(--secondary);
+      }
+
+      .btn-danger:hover {
+        background-color: #e05555;
+      }
+
+      .section-title {
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-light);
+        color: var(--primary-dark);
+        font-weight: 600;
+      }
+
+      .crop-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .crop-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .crop-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-large);
+      }
+
+      .crop-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .crop-card-content {
+        padding: 1.25rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .crop-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-dark);
+      }
+
+      .crop-card p {
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+      }
+
+      .crop-card .price {
+        font-weight: 600;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+      }
+
+      .crop-card .quantity {
+        margin-top: auto;
+        padding-top: 0.75rem;
+      }
+
+      .crop-card input {
+        margin: 0.75rem 0;
+      }
+
+      .cart {
+        margin-top: 3rem;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--gray-light);
+      }
+
+      .cart-item:last-child {
+        border-bottom: none;
+      }
+
+      .cart-item-details {
+        flex-grow: 1;
+      }
+
+      .cart-item-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .cart-item-actions button {
+        width: auto;
+        padding: 0.5rem;
+      }
+
+      .cart-total {
+        margin-top: 1.5rem;
+        text-align: right;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      .checkout-btn {
+        margin-top: 1.5rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+      }
+
+      #billModal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .bill-content {
+        background-color: var(--white);
+        margin: 10% auto;
+        padding: 2rem;
+        border-radius: var(--radius);
+        max-width: 550px;
+        width: 90%;
+        box-shadow: var(--shadow-large);
+      }
+
+      .bill-content h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .bill-details {
+        margin-bottom: 1.5rem;
+      }
+
+      .bill-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px dashed var(--gray-light);
+      }
+
+      .bill-total {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        text-align: right;
+        color: var(--primary-dark);
+      }
+
+      .bill-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .bill-actions button {
+        width: auto;
+        padding: 0.75rem 1.5rem;
+      }
+
+      footer {
+        background-color: var(--text-dark);
+        color: var(--white);
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: auto;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-links a {
+        color: var(--white);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-light);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-light);
+      }
+
+      .empty-state p {
+        margin-bottom: 1rem;
+      }
+
+      /* Language selector styles */
+      .language-selector {
+        position: relative;
+        margin-left: auto;
+        margin-right: 1rem;
+      }
+
+      .language-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius);
+        cursor: pointer;
+        font-size: 0.9rem;
+        width: auto;
+      }
+
+      .language-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .language-btn::before {
+        content: "🌐";
+        font-size: 1.1rem;
+      }
+
+      .language-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        width: 180px;
+        z-index: 100;
+        display: none;
+        margin-top: 0.5rem;
+        overflow: hidden;
+      }
+
+      .language-dropdown.show {
+        display: block;
+      }
+
+      .language-option {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .language-option:hover {
+        background-color: var(--gray-light);
+      }
+
+      .language-option.active {
+        background-color: var(--primary-light);
+        color: var(--primary-dark);
+        font-weight: 500;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1rem;
+        }
+
+        .nav-menu {
+          width: 100%;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.9rem;
+        }
+
+        .language-selector {
+          margin: 0.5rem 0;
+          width: 100%;
+        }
+
+        .language-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .language-dropdown {
+          width: 100%;
+        }
+
+        .crop-list {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .bill-content {
+          margin: 20% auto;
+          padding: 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-menu {
+          gap: 0.5rem;
+        }
+
+        .nav-menu a {
+          padding: 0.4rem 0.6rem;
+          font-size: 0.85rem;
+        }
+
+        .crop-list {
+          grid-template-columns: 1fr;
+        }
+
+        .crop-card img {
+          height: 160px;
+        }
+
+        .login-container,
+        .crop-list,
+        .cart,
+        .bill-modal {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <a href="#" class="logo" data-i18n="brand">KisanMitra</a>
+        
+        <div class="language-selector">
+          <button class="language-btn" onclick="toggleLanguageDropdown()">
+            <span id="currentLanguage">English</span>
+          </button>
+          <div class="language-dropdown" id="languageDropdown">
+            <div class="language-option active" onclick="changeLanguage('en')">
+              🇬🇧 English
+            </div>
+            <div class="language-option" onclick="changeLanguage('hi')">
+              🇮🇳 हिंदी (Hindi)
+            </div>
+            <div class="language-option" onclick="changeLanguage('ta')">
+              🇮🇳 தமிழ் (Tamil)
+            </div>
+            <div class="language-option" onclick="changeLanguage('te')">
+              🇮🇳 తెలుగు (Telugu)
+            </div>
+            <div class="language-option" onclick="changeLanguage('bn')">
+              🇮🇳 বাংলা (Bengali)
+            </div>
+            <div class="language-option" onclick="changeLanguage('mr')">
+              🇮🇳 मराठी (Marathi)
+            </div>
+          </div>
+        </div>
+        
+        <nav class="nav-menu">
+          <a href="#" class="active" onclick="showPage('home')" data-i18n="nav.home">Home</a>
+          <a href="#" onclick="showPage('orders')" data-i18n="nav.orders">Orders</a>
+          <a href="#" onclick="showPage('cart')" class="cart-icon">
+            <span data-i18n="nav.cart">Cart</span>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+          <a href="#" onclick="showPage('contact')" data-i18n="nav.contact">Contact Us</a>
+          <a href="#" onclick="logout()" data-i18n="nav.logout">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <div id="loginPage" class="container login-container">
+      <h2 data-i18n="login.welcome">Welcome to KisanMitra</h2>
+      <p data-i18n="login.subtitle">Connect directly with farmers or buy fresh produce</p>
+      
+      <form id="loginForm" onsubmit="return handleLogin(event)">
+        <div class="form-group">
+          <label for="userType" data-i18n="login.userType">I am a:</label>
+          <select id="userType" required>
+            <option value="" data-i18n="login.selectType">Select User Type</option>
+            <option value="farmer" data-i18n="login.farmer">Farmer</option>
+            <option value="customer" data-i18n="login.customer">Customer</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="username" data-i18n="login.username">Username:</label>
+          <input type="text" id="username" data-i18n-placeholder="login.usernamePlaceholder" placeholder="Enter your username" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="password" data-i18n="login.password">Password:</label>
+          <input type="password" id="password" data-i18n-placeholder="login.passwordPlaceholder" placeholder="Enter your password" required />
+        </div>
+        
+        <button type="submit" data-i18n="login.loginBtn">Login</button>
+      </form>
+    </div>
+
+    <div id="farmerDetailsPage" style="display: none" class="container">
+      <h2 class="section-title" data-i18n="farmer.dashboard">Farmer Dashboard</h2>
+      
+      <div class="login-container">
+        <h3 data-i18n="farmer.addCrop">Add New Crop</h3>
+        <form id="cropForm" onsubmit="return handleCropSubmit(event)">
+          <div class="form-group">
+            <label for="cropName" data-i18n="farmer.cropName">Crop Name:</label>
+            <input type="text" id="cropName" data-i18n-placeholder="farmer.cropNamePlaceholder" placeholder="Enter crop name" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="cropQuantity" data-i18n="farmer.quantity">Quantity (kg):</label>
+            <input type="number" id="cropQuantity" min="1" data-i18n-placeholder="farmer.quantityPlaceholder" placeholder="Enter quantity" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="cropPrice" data-i18n="farmer.price">Price per kg (₹):</label>
+            <input type="number" id="cropPrice" min="1" data-i18n-placeholder="farmer.pricePlaceholder" placeholder="Enter price" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="cropImage" data-i18n="farmer.image">Image URL:</label>
+            <input type="text" id="cropImage" data-i18n-placeholder="farmer.imagePlaceholder" placeholder="Enter image URL (optional)" />
+          </div>
+          
+          <button type="submit" data-i18n="farmer.addBtn">Add Crop</button>
+        </form>
+      </div>
+      
+      <h3 class="section-title" data-i18n="farmer.yourCrops">Your Crops</h3>
+      <div id="farmerCropList" class="crop-list"></div>
+    </div>
+
+    <div id="customerMarketPage" style="display: none" class="container">
+      <h2 class="section-title" data-i18n="market.available">Available Crops</h2>
+      <div id="cropListDisplay" class="crop-list"></div>
+      
+      <div id="cartSection" class="cart">
+        <h3 class="section-title" data-i18n="cart.title">Your Cart</h3>
+        <div id="cartItems"></div>
+        <div id="cartEmpty" class="empty-state">
+          <p data-i18n="cart.empty">Your cart is empty</p>
+          <p data-i18n="cart.browse">Browse the marketplace and add items to your cart</p>
+        </div>
+        <div class="cart-total" id="cartTotal" data-i18n="cart.total">Total: ₹0</div>
+        <button class="checkout-btn" onclick="checkout()" data-i18n="cart.checkout">Proceed to Checkout</button>
+      </div>
+    </div>
+
+    <div id="billModal">
+      <div class="bill-content">
+        <h2 data-i18n="bill.title">Purchase Bill</h2>
+        <div class="bill-details" id="billDetails"></div>
+        <div class="bill-actions">
+          <button onclick="closeBill()" data-i18n="bill.close">Close</button>
+          <button class="btn-secondary" onclick="downloadBill()" data-i18n="bill.download">Download Receipt</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" data-i18n="footer.about">About Us</a>
+          <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer.terms">Terms of Service</a>
+          <a href="#" data-i18n="footer.contact">Contact</a>
+        </div>
+        <p data-i18n="footer.copyright">&copy; 2024 KisanMitra. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Data storage
+      const defaultCrops = [
+        {
+          name: "Wheat",
+          price: 25,
+          quantity: 1000,
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS81dZrY1h0L0gbEUfkbOH716WITDBzvQNyyg&s",
+        },
+        {
+          name: "Rice",
+          price: 40,
+          quantity: 800,
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS97Ggjlg1sulhLWAw9kpiX9x7C0o2ynqxurQ&s",
+        },
+        {
+          name: "Tomatoes",
+          price: 30,
+          quantity: 500,
+          image: "https://media.post.rvohealth.io/wp-content/uploads/2020/09/AN313-Tomatoes-732x549-Thumb.jpg",
+        },
+        {
+          name: "Potatoes",
+          price: 20,
+          quantity: 1200,
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6v6-5oWwpOH3jeOliF9RJObbpb9OAYn8IZw&s",
+        },
+        {
+          name: "Onions",
+          price: 25,
+          quantity: 700,
+          image: "https://www.thoughtco.com/thmb/NA2t9j8ThBD7nPN913Sym1pwSYg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/full-frame-shot-of-onions-in-market-stall-562386223-59b97e59845b340010f8d76e.jpg",
+        },
+        {
+          name: "Corn",
+          price: 35,
+          quantity: 600,
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKhsl7x8T_VzCEtieLqNIynkI18OfUKH32hQ&s",
+        },
+        {
+          name: "Cauliflower",
+          price: 45,
+          quantity: 400,
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_bti4E61jiMuaRqnP6XL213Tf0I6RJ0_fRQ&s",
+        },
+        {
+          name: "Spinach",
+          price: 50,
+          quantity: 300,
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcOyTZm1EnIeOevPMBXL96T8IDUHC2LxSAcw&s",
+        },
+        {
+          name: "Carrots",
+          price: 40,
+          quantity: 500,
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUD0UfXYXUdpzKvH3TlEulgbI0siG9Aqi3OA&s",
+        },
+        {
+          name: "Eggplant",
+          price: 35,
+          quantity: 450,
+          image: "https://cdn.britannica.com/64/143464-050-B0EC6714/Eggplant.jpg",
+        },
+        {
+          name: "Okra",
+          price: 60,
+          quantity: 250,
+          image: "https://img.freepik.com/premium-photo/fresh-green-okra-vegetable-display-sale-market-place_433823-1107.jpg",
+        },
+        {
+          name: "Green Beans",
+          price: 55,
+          quantity: 350,
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTutTVY36Mt8qLi9Miuc0xzeVW_qaoirp9h3Q&s",
+        }
+      ];
+
+      // Translation dictionaries
+      const translations = {
+        en: {
+          brand: "KisanMitra",
+          nav: {
+            home: "Home",
+            orders: "Orders",
+            cart: "Cart",
+            contact: "Contact Us",
+            logout: "Logout"
+          },
+          login: {
+            welcome: "Welcome to KisanMitra",
+            subtitle: "Connect directly with farmers or buy fresh produce",
+            userType: "I am a:",
+            selectType: "Select User Type",
+            farmer: "Farmer",
+            customer: "Customer",
+            username: "Username:",
+            usernamePlaceholder: "Enter your username",
+            password: "Password:",
+            passwordPlaceholder: "Enter your password",
+            loginBtn: "Login"
+          },
+          farmer: {
+            dashboard: "Farmer Dashboard",
+            addCrop: "Add New Crop",
+            cropName: "Crop Name:",
+            cropNamePlaceholder: "Enter crop name",
+            quantity: "Quantity (kg):",
+            quantityPlaceholder: "Enter quantity",
+            price: "Price per kg (₹):",
+            pricePlaceholder: "Enter price",
+            image: "Image URL:",
+            imagePlaceholder: "Enter image URL (optional)",
+            addBtn: "Add Crop",
+            yourCrops: "Your Crops",
+            edit: "Edit",
+            available: "Available",
+            kg: "kg"
+          },
+          market: {
+            available: "Available Crops",
+            price: "Price:",
+            available: "Available:",
+            quantity: "Quantity:",
+            addToCart: "Add to Cart"
+          },
+          cart: {
+            title: "Your Cart",
+            empty: "Your cart is empty",
+            browse: "Browse the marketplace and add items to your cart",
+            total: "Total: ₹0",
+            checkout: "Proceed to Checkout",
+            remove: "Remove"
+          },
+          bill: {
+            title: "Purchase Bill",
+            details: "Purchase Details",
+            total: "Total Amount:",
+            close: "Close",
+            download: "Download Receipt"
+          },
+          footer: {
+            about: "About Us",
+            privacy: "Privacy Policy",
+            terms: "Terms of Service",
+            contact: "Contact",
+            copyright: "© 2024 KisanMitra. All rights reserved."
+          },
+          notifications: {
+            cropAdded: "Crop added successfully!",
+            invalidQuantity: "Please enter a valid quantity",
+            itemAdded: "Added to cart",
+            emptyCart: "Your cart is empty!",
+            loggedOut: "Logged out successfully",
+            orderComplete: "Order completed successfully",
+            receiptDownloaded: "Receipt downloaded successfully",
+            fillAllFields: "Please fill all fields",
+            loginFirst: "Please log in first",
+            comingSoon: "Coming soon!"
+          },
+          crops: {
+            wheat: "Wheat",
+            rice: "Rice",
+            tomatoes: "Tomatoes",
+            potatoes: "Potatoes",
+            onions: "Onions",
+            corn: "Corn",
+            cauliflower: "Cauliflower",
+            spinach: "Spinach",
+            carrots: "Carrots",
+            eggplant: "Eggplant",
+            okra: "Okra",
+            greenBeans: "Green Beans"
+          }
+        },
+        hi: {
+          brand: "किसानमित्र",
+          nav: {
+            home: "होम",
+            orders: "ऑर्डर",
+            cart: "कार्ट",
+            contact: "संपर्क करें",
+            logout: "लॉगआउट"
+          },
+          login: {
+            welcome: "किसानमित्र में आपका स्वागत है",
+            subtitle: "किसानों से सीधे जुड़ें या ताजा उपज खरीदें",
+            userType: "मैं हूँ:",
+            selectType: "उपयोगकर्ता प्रकार चुनें",
+            farmer: "किसान",
+            customer: "ग्राहक",
+            username: "उपयोगकर्ता नाम:",
+            usernamePlaceholder: "अपना उपयोगकर्ता नाम दर्ज करें",
+            password: "पासवर्ड:",
+            passwordPlaceholder: "अपना पासवर्ड दर्ज करें",
+            loginBtn: "लॉगिन"
+          },
+          farmer: {
+            dashboard: "किसान डैशबोर्ड",
+            addCrop: "नई फसल जोड़ें",
+            cropName: "फसल का नाम:",
+            cropNamePlaceholder: "फसल का नाम दर्ज करें",
+            quantity: "मात्रा (किग्रा):",
+            quantityPlaceholder: "मात्रा दर्ज करें",
+            price: "प्रति किलो मूल्य (₹):",
+            pricePlaceholder: "मूल्य दर्ज करें",
+            image: "छवि URL:",
+            imagePlaceholder: "छवि URL दर्ज करें (वैकल्पिक)",
+            addBtn: "फसल जोड़ें",
+            yourCrops: "आपकी फसलें",
+            edit: "संपादित करें",
+            available: "उपलब्ध",
+            kg: "किग्रा"
+          },
+          market: {
+            available: "उपलब्ध फसलें",
+            price: "मूल्य:",
+            available: "उपलब्ध:",
+            quantity: "मात्रा:",
+            addToCart: "कार्ट में जोड़ें"
+          },
+          cart: {
+            title: "आपका कार्ट",
+            empty: "आपका कार्ट खाली है",
+            browse: "बाज़ार ब्राउज़ करें और अपने कार्ट में आइटम जोड़ें",
+            total: "कुल: ₹0",
+            checkout: "चेकआउट करें",
+            remove: "हटाएं"
+          },
+          bill: {
+            title: "खरीद बिल",
+            details: "खरीद विवरण",
+            total: "कुल राशि:",
+            close: "बंद करें",
+            download: "रसीद डाउनलोड करें"
+          },
+          footer: {
+            about: "हमारे बारे में",
+            privacy: "गोपनीयता नीति",
+            terms: "सेवा की शर्तें",
+            contact: "संपर्क",
+            copyright: "© 2024 किसानमित्र. सर्वाधिकार सुरक्षित."
+          },
+          notifications: {
+            cropAdded: "फसल सफलतापूर्वक जोड़ी गई!",
+            invalidQuantity: "कृपया एक वैध मात्रा दर्ज करें",
+            itemAdded: "कार्ट में जोड़ा गया",
+            emptyCart: "आपका कार्ट खाली है!",
+            loggedOut: "सफलतापूर्वक लॉगआउट किया गया",
+            orderComplete: "ऑर्डर सफलतापूर्वक पूरा हुआ",
+            receiptDownloaded: "रसीद सफलतापूर्वक डाउनलोड की गई",
+            fillAllFields: "कृपया सभी फ़ील्ड भरें",
+            loginFirst: "कृपया पहले लॉगिन करें",
+            comingSoon: "जल्द आ रहा है!"
+          },
+          crops: {
+            wheat: "गेहूं",
+            rice: "चावल",
+            tomatoes: "टमाटर",
+            potatoes: "आलू",
+            onions: "प्याज",
+            corn: "मक्का",
+            cauliflower: "फूलगोभी",
+            spinach: "पालक",
+            carrots: "गाजर",
+            eggplant: "बैंगन",
+            okra: "भिंडी",
+            greenBeans: "फलियां"
+          }
+        },
+        ta: {
+          brand: "கிசான்மித்ரா",
+          nav: {
+            home: "முகப்பு",
+            orders: "ஆர்டர்கள்",
+            cart: "கார்ட்",
+            contact: "தொடர்பு கொள்ளவும்",
+            logout: "வெளியேறு"
+          },
+          login: {
+            welcome: "கிசான்மித்ராவிற்கு வரவேற்கிறோம்",
+            subtitle: "விவசாயிகளுடன் நேரடியாக இணையுங்கள் அல்லது புதிய விளைபொருட்களை வாங்குங்கள்",
+            userType: "நான்:",
+            selectType: "பயனர் வகையைத் தேர்ந்தெடுக்கவும்",
+            farmer: "விவசாயி",
+            customer: "வாடிக்கையாளர்",
+            username: "பயனர்பெயர்:",
+            usernamePlaceholder: "உங்கள் பயனர்பெயரை உள்ளிடவும்",
+            password: "கடவுச்சொல்:",
+            passwordPlaceholder: "உங்கள் கடவுச்சொல்லை உள்ளிடவும்",
+            loginBtn: "உள்நுழைக"
+          },
+          farmer: {
+            dashboard: "விவசாயி டாஷ்போர்டு",
+            addCrop: "புதிய பயிர் சேர்க்க",
+            cropName: "பயிர் பெயர்:",
+            cropNamePlaceholder: "பயிர் பெயரை உள்ளிடவும்",
+            quantity: "அளவு (கிலோ):",
+            quantityPlaceholder: "அளவை உள்ளிடவும்",
+            price: "கிலோ விலை (₹):",
+            pricePlaceholder: "விலையை உள்ளிடவும்",
+            image: "படம் URL:",
+            imagePlaceholder: "படம் URL ஐ உள்ளிடவும் (விருப்பம்)",
+            addBtn: "பயிர் சேர்க்க",
+            yourCrops: "உங்கள் பயிர்கள்",
+            edit: "திருத்து",
+            available: "கிடைக்கும்",
+            kg: "கிலோ"
+          },
+          market: {
+            available: "கிடைக்கும் பயிர்கள்",
+            price: "விலை:",
+            available: "கிடைக்கும்:",
+            quantity: "அளவு:",
+            addToCart: "கார்ட்டில் சேர்"
+          },
+          cart: {
+            title: "உங்கள் கார்ட்",
+            empty: "உங்கள் கார்ட் காலியாக உள்ளது",
+            browse: "சந்தையை உலாவி உங்கள் கார்ட்டில் பொருட்களைச் சேர்க்கவும்",
+            total: "மொத்தம்: ₹0",
+            checkout: "செக்அவுட் செய்யவும்",
+            remove: "அகற்று"
+          },
+          bill: {
+            title: "கொள்முதல் பில்",
+            details: "கொள்முதல் விவரங்கள்",
+            total: "மொத்த தொகை:",
+            close: "மூடு",
+            download: "ரசீதைப் பதிவிறக்கு"
+          },
+          footer: {
+            about: "எங்களைப் பற்றி",
+            privacy: "தனியுரிமைக் கொள்கை",
+            terms: "சேவை விதிமுறைகள்",
+            contact: "தொடர்பு",
+            copyright: "© 2024 கிசான்மித்ரா. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+          },
+          notifications: {
+            cropAdded: "பயிர் வெற்றிகரமாக சேர்க்கப்பட்டது!",
+            invalidQuantity: "சரியான அளவை உள்ளிடவும்",
+            itemAdded: "கார்ட்டில் சேர்க்கப்பட்டது",
+            emptyCart: "உங்கள் கார்ட் காலியாக உள்ளது!",
+            loggedOut: "வெற்றிகரமாக வெளியேறினீர்கள்",
+            orderComplete: "ஆர்டர் வெற்றிகரமாக முடிந்தது",
+            receiptDownloaded: "ரசீது வெற்றிகரமாக பதிவிறக்கப்பட்டது",
+            fillAllFields: "அனைத்து புலங்களையும் நிரப்பவும்",
+            loginFirst: "முதலில் உள்நுழையவும்",
+            comingSoon: "விரைவில் வருகிறது!"
+          },
+          crops: {
+            wheat: "கோதுமை",
+            rice: "அரிசி",
+            tomatoes: "தக்காளி",
+            potatoes: "உருளைக்கிழங்கு",
+            onions: "வெங்காயம்",
+            corn: "மக்காச்சோளம்",
+            cauliflower: "காலிஃப்ளவர்",
+            spinach: "கீரை",
+            carrots: "கேரட்",
+            eggplant: "கத்தரிக்காய்",
+            okra: "வெண்டைக்காய்",
+            greenBeans: "பீன்ஸ்"
+          }
+        },
+        te: {
+          brand: "కిసాన్‌మిత్ర",
+          nav: {
+            home: "హోమ్",
+            orders: "ఆర్డర్లు",
+            cart: "కార్ట్",
+            contact: "సంప్రదించండి",
+            logout: "లాగ్అవుట్"
+          },
+          login: {
+            welcome: "కిసాన్‌మిత్రకు స్వాగతం",
+            subtitle: "రైతులతో నేరుగా కనెక్ట్ అవ్వండి లేదా తాజా ఉత్పత్తులను కొనుగోలు చేయండి",
+            userType: "నేను:",
+            selectType: "వినియోగదారు రకాన్ని ఎంచుకోండి",
+            farmer: "రైతు",
+            customer: "కస్టమర్",
+            username: "యూజర్‌నేమ్:",
+            usernamePlaceholder: "మీ యూజర్‌నేమ్‌ని నమోదు చేయండి",
+            password: "పాస్‌వర్డ్:",
+            passwordPlaceholder: "మీ పాస్‌వర్డ్‌ని నమోదు చేయండి",
+            loginBtn: "లాగిన్"
+          },
+          farmer: {
+            dashboard: "రైతు డాష్‌బోర్డ్",
+            addCrop: "కొత్త పంట జోడించండి",
+            cropName: "పంట పేరు:",
+            cropNamePlaceholder: "పంట పేరును నమోదు చేయండి",
+            quantity: "పరిమాణం (కేజీ):",
+            quantityPlaceholder: "పరిమాణాన్ని నమోదు చేయండి",
+            price: "కేజీకి ధర (₹):",
+            pricePlaceholder: "ధరను నమోదు చేయండి",
+            image: "చిత్రం URL:",
+            imagePlaceholder: "చిత్రం URL ని నమోదు చేయండి (ఐచ్ఛికం)",
+            addBtn: "పంట జోడించండి",
+            yourCrops: "మీ పంటలు",
+            edit: "సవరించు",
+            available: "అందుబాటులో ఉంది",
+            kg: "కేజీ"
+          },
+          market: {
+            available: "అందుబాటులో ఉన్న పంటలు",
+            price: "ధర:",
+            available: "అందుబాటులో ఉంది:",
+            quantity: "పరిమాణం:",
+            addToCart: "కార్ట్‌కి జోడించండి"
+          },
+          cart: {
+            title: "మీ కార్ట్",
+            empty: "మీ కార్ట్ ఖాళీగా ఉంది",
+            browse: "మార్కెట్‌ప్లేస్‌ని బ్రౌజ్ చేసి మీ కార్ట్‌కి వస్తువులను జోడించండి",
+            total: "మొత్తం: ₹0",
+            checkout: "చెక్అవుట్ చేయండి",
+            remove: "తొలగించు"
+          },
+          bill: {
+            title: "కొనుగోలు బిల్లు",
+            details: "కొనుగోలు వివరాలు",
+            total: "మొత్తం మొత్తం:",
+            close: "మూసివేయి",
+            download: "రసీదును డౌన్‌లోడ్ చేయండి"
+          },
+          footer: {
+            about: "మా గురించి",
+            privacy: "గోప్యతా విధానం",
+            terms: "సేవా నిబంధనలు",
+            contact: "సంప్రదించండి",
+            copyright: "© 2024 కిసాన్‌మిత్ర. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి."
+          },
+          notifications: {
+            cropAdded: "పంట విజయవంతంగా జోడించబడింది!",
+            invalidQuantity: "దయచేసి చెల్లుబాటు అయ్యే పరిమాణాన్ని నమోదు చేయండి",
+            itemAdded: "కార్ట్‌కి జోడించబడింది",
+            emptyCart: "మీ కార్ట్ ఖాళీగా ఉంది!",
+            loggedOut: "విజయవంతంగా లాగ్అవుట్ చేయబడింది",
+            orderComplete: "ఆర్డర్ విజయవంతంగా పూర్తయింది",
+            receiptDownloaded: "రసీదు విజయవంతంగా డౌన్‌లోడ్ చేయబడింది",
+            fillAllFields: "దయచేసి అన్ని ఫీల్డ్‌లను పూరించండి",
+            loginFirst: "దయచేసి ముందుగా లాగిన్ చేయండి",
+            comingSoon: "త్వరలో వస్తోంది!"
+          },
+          crops: {
+            wheat: "గోధుమ",
+            rice: "బియ్యం",
+            tomatoes: "టమాటాలు",
+            potatoes: "బంగాళాదుంపలు",
+            onions: "ఉల్లిపాయలు",
+            corn: "మొక్కజొన్న",
+            cauliflower: "కాలీఫ్లవర్",
+            spinach: "పాలకూర",
+            carrots: "కారెట్లు",
+            eggplant: "వంకాయ",
+            okra: "బెండకాయ",
+            greenBeans: "బీన్స్"
+          }
+        },
+        bn: {
+          brand: "কিসানমিত্র",
+          nav: {
+            home: "হোম",
+            orders: "অর্ডার",
+            cart: "কার্ট",
+            contact: "যোগাযোগ করুন",
+            logout: "লগআউট"
+          },
+          login: {
+            welcome: "কিসানমিত্রে আপনাকে স্বাগতম",
+            subtitle: "কৃষকদের সাথে সরাসরি সংযোগ করুন বা তাজা উৎপাদন কিনুন",
+            userType: "আমি একজন:",
+            selectType: "ব্যবহারকারীর ধরন নির্বাচন করুন",
+            farmer: "কৃষক",
+            customer: "গ্রাহক",
+            username: "ব্যবহারকারীর নাম:",
+            usernamePlaceholder: "আপনার ব্যবহারকারীর নাম লিখুন",
+            password: "পাসওয়ার্ড:",
+            passwordPlaceholder: "আপনার পাসওয়ার্ড লিখুন",
+            loginBtn: "লগইন"
+          },
+          farmer: {
+            dashboard: "কৃষক ড্যাশবোর্ড",
+            addCrop: "নতুন ফসল যোগ করুন",
+            cropName: "ফসলের নাম:",
+            cropNamePlaceholder: "ফসলের নাম লিখুন",
+            quantity: "পরিমাণ (কেজি):",
+            quantityPlaceholder: "পরিমাণ লিখুন",
+            price: "প্রতি কেজি দাম (₹):",
+            pricePlaceholder: "দাম লিখুন",
+            image: "ছবি URL:",
+            imagePlaceholder: "ছবি URL লিখুন (ঐচ্ছিক)",
+            addBtn: "ফসল যোগ করুন",
+            yourCrops: "আপনার ফসল",
+            edit: "সম্পাদনা করুন",
+            available: "উপলব্ধ",
+            kg: "কেজি"
+          },
+          market: {
+            available: "উপলব্ধ ফসল",
+            price: "দাম:",
+            available: "উপলব্ধ:",
+            quantity: "পরিমাণ:",
+            addToCart: "কার্টে যোগ করুন"
+          },
+          cart: {
+            title: "আপনার কার্ট",
+            empty: "আপনার কার্ট খালি",
+            browse: "বাজার ব্রাউজ করুন এবং আপনার কার্টে আইটেম যোগ করুন",
+            total: "মোট: ₹0",
+            checkout: "চেকআউট করুন",
+            remove: "সরান"
+          },
+          bill: {
+            title: "ক্রয় বিল",
+            details: "ক্রয় বিবরণ",
+            total: "মোট পরিমাণ:",
+            close: "বন্ধ করুন",
+            download: "রসিদ ডাউনলোড করুন"
+          },
+          footer: {
+            about: "আমাদের সম্পর্কে",
+            privacy: "গোপনীয়তা নীতি",
+            terms: "পরিষেবার শর্তাবলী",
+            contact: "যোগাযোগ",
+            copyright: "© 2024 কিসানমিত্র। সর্বস্বত্ব সংরক্ষিত।"
+          },
+          notifications: {
+            cropAdded: "ফসল সফলভাবে যোগ করা হয়েছে!",
+            invalidQuantity: "অনুগ্রহ করে একটি বৈধ পরিমাণ লিখুন",
+            itemAdded: "কার্টে যোগ করা হয়েছে",
+            emptyCart: "আপনার কার্ট খালি!",
+            loggedOut: "সফলভাবে লগআউট করা হয়েছে",
+            orderComplete: "অর্ডার সফলভাবে সম্পন্ন হয়েছে",
+            receiptDownloaded: "রসিদ সফলভাবে ডাউনলোড করা হয়েছে",
+            fillAllFields: "অনুগ্রহ করে সমস্ত ক্ষেত্র পূরণ করুন",
+            loginFirst: "অনুগ্রহ করে প্রথমে লগইন করুন",
+            comingSoon: "শীঘ্রই আসছে!"
+          },
+          crops: {
+            wheat: "গম",
+            rice: "চাল",
+            tomatoes: "টমেটো",
+            potatoes: "আলু",
+            onions: "পেঁয়াজ",
+            corn: "ভুট্টা",
+            cauliflower: "ফুলকপি",
+            spinach: "পালং শাক",
+            carrots: "গাজর",
+            eggplant: "বেগুন",
+            okra: "ঢেঁড়স",
+            greenBeans: "শিম"
+          }
+        },
+        mr: {
+          brand: "किसानमित्र",
+          nav: {
+            home: "होम",
+            orders: "ऑर्डर",
+            cart: "कार्ट",
+            contact: "संपर्क करा",
+            logout: "लॉगआउट"
+          },
+          login: {
+            welcome: "किसानमित्र मध्ये आपले स्वागत आहे",
+            subtitle: "शेतकऱ्यांशी थेट जोडा किंवा ताजी उत्पादने खरेदी करा",
+            userType: "मी आहे:",
+            selectType: "वापरकर्ता प्रकार निवडा",
+            farmer: "शेतकरी",
+            customer: "ग्राहक",
+            username: "वापरकर्तानाव:",
+            usernamePlaceholder: "आपले वापरकर्तानाव प्रविष्ट करा",
+            password: "पासवर्ड:",
+            passwordPlaceholder: "आपला पासवर्ड प्रविष्ट करा",
+            loginBtn: "लॉगिन"
+          },
+          farmer: {
+            dashboard: "शेतकरी डॅशबोर्ड",
+            addCrop: "नवीन पीक जोडा",
+            cropName: "पिकाचे नाव:",
+            cropNamePlaceholder: "पिकाचे नाव प्रविष्ट करा",
+            quantity: "प्रमाण (किलो):",
+            quantityPlaceholder: "प्रमाण प्रविष्ट करा",
+            price: "प्रति किलो किंमत (₹):",
+            pricePlaceholder: "किंमत प्रविष्ट करा",
+            image: "प्रतिमा URL:",
+            imagePlaceholder: "प्रतिमा URL प्रविष्ट करा (वैकल्पिक)",
+            addBtn: "पीक जोडा",
+            yourCrops: "तुमची पिके",
+            edit: "संपादित करा",
+            available: "उपलब्ध",
+            kg: "किलो"
+          },
+          market: {
+            available: "उपलब्ध पिके",
+            price: "किंमत:",
+            available: "उपलब्ध:",
+            quantity: "प्रमाण:",
+            addToCart: "कार्टमध्ये जोडा"
+          },
+          cart: {
+            title: "तुमचा कार्ट",
+            empty: "तुमचा कार्ट रिकामा आहे",
+            browse: "बाजारपेठ ब्राउझ करा आणि तुमच्या कार्टमध्ये वस्तू जोडा",
+            total: "एकूण: ₹0",
+            checkout: "चेकआउट करा",
+            remove: "काढा"
+          },
+          bill: {
+            title: "खरेदी बिल",
+            details: "खरेदी तपशील",
+            total: "एकूण रक्कम:",
+            close: "बंद करा",
+            download: "पावती डाउनलोड करा"
+          },
+          footer: {
+            about: "आमच्याबद्दल",
+            privacy: "गोपनीयता धोरण",
+            terms: "सेवा अटी",
+            contact: "संपर्क",
+            copyright: "© 2024 किसानमित्र. सर्व हक्क राखीव."
+          },
+          notifications: {
+            cropAdded: "पीक यशस्वीरित्या जोडले!",
+            invalidQuantity: "कृपया वैध प्रमाण प्रविष्ट करा",
+            itemAdded: "कार्टमध्ये जोडले",
+            emptyCart: "तुमचा कार्ट रिकामा आहे!",
+            loggedOut: "यशस्वीरित्या लॉगआउट केले",
+            orderComplete: "ऑर्डर यशस्वीरित्या पूर्ण झाला",
+            receiptDownloaded: "पावती यशस्वीरित्या डाउनलोड केली",
+            fillAllFields: "कृपया सर्व फील्ड भरा",
+            loginFirst: "कृपया प्रथम लॉगिन करा",
+            comingSoon: "लवकरच येत आहे!"
+          },
+          crops: {
+            wheat: "गहू",
+            rice: "तांदूळ",
+            tomatoes: "टोमॅटो",
+            potatoes: "बटाटे",
+            onions: "कांदे",
+            corn: "मका",
+            cauliflower: "फुलकोबी",
+            spinach: "पालक",
+            carrots: "गाजर",
+            eggplant: "वांगे",
+            okra: "भेंडी",
+            greenBeans: "शेंगा"
+          }
+        }
+      };
+
+      // Application state
+      let crops = [...defaultCrops];
+      let cart = [];
+      let isLoggedIn = false;
+      let currentUser = null;
+      let orders = [];
+      let currentLanguage = 'en';
+
+      // Initialize the application
+      document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        updateCartVisibility();
+        applyTranslations();
+      });
+
+      // Language functions
+      function toggleLanguageDropdown() {
+        const dropdown = document.getElementById('languageDropdown');
+        dropdown.classList.toggle('show');
+      }
+
+      function changeLanguage(lang) {
+        currentLanguage = lang;
+        
+        // Update the current language display
+        document.getElementById('currentLanguage').textContent = getLanguageName(lang);
+        
+        // Update all translations
+        applyTranslations();
+        
+        // Close the dropdown
+        document.getElementById('languageDropdown').classList.remove('show');
+        
+        // Update active language in dropdown
+        const options = document.querySelectorAll('.language-option');
+        options.forEach(option => {
+          option.classList.remove('active');
+          if (option.getAttribute('onclick').includes(`'${lang}'`)) {
+            option.classList.add('active');
+          }
+        });
+        
+        // Show notification
+        showNotification(getTranslation('notifications.languageChanged', { lang: getLanguageName(lang) }), 'success');
+        
+        // Update crop names in the UI
+        if (isLoggedIn) {
+          if (currentUser.type === 'farmer') {
+            displayFarmerCrops();
+          } else {
+            loadCustomerMarket();
+          }
+          updateCart();
+        }
+      }
+      
+      function getLanguageName(code) {
+        const names = {
+          'en': 'English',
+          'hi': 'हिंदी',
+          'ta': 'தமிழ்',
+          'te': 'తెలుగు',
+          'bn': 'বাংলা',
+          'mr': 'मराठी'
+        };
+        return names[code] || 'English';
+      }
+      
+      function getTranslation(key, params = {}) {
+        // Split the key by dots to access nested properties
+        const keys = key.split('.');
+        let translation = translations[currentLanguage];
+        
+        // Navigate through the nested objects
+        for (const k of keys) {
+          if (translation && translation[k]) {
+            translation = translation[k];
+          } else {
+            // Fallback to English if translation not found
+            let fallback = translations['en'];
+            for (const k of keys) {
+              if (fallback && fallback[k]) {
+                fallback = fallback[k];
+              } else {
+                return key; // Return the key if no translation found
+              }
+            }
+            translation = fallback;
+            break;
+          }
+        }
+        
+        // Replace parameters if any
+        if (typeof translation === 'string' && Object.keys(params).length > 0) {
+          for (const [param, value] of Object.entries(params)) {
+            translation = translation.replace(`{${param}}`, value);
+          }
+        }
+        
+        return translation;
+      }
+      
+      function applyTranslations() {
+        // Translate all elements with data-i18n attribute
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+          const key = element.getAttribute('data-i18n');
+          element.textContent = getTranslation(key);
+        });
+        
+        // Translate placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+          const key = element.getAttribute('data-i18n-placeholder');
+          element.placeholder = getTranslation(key);
+        });
+        
+        // Update cart total with correct currency format
+        updateCart();
+        
+        // Translate crop names in the UI
+        translateCropNames();
+      }
+      
+      function translateCropNames() {
+        // Update crop names based on current language
+        crops.forEach(crop => {
+          const lowerName = crop.name.toLowerCase();
+          if (translations[currentLanguage].crops && translations[currentLanguage].crops[lowerName]) {
+            crop.translatedName = translations[currentLanguage].crops[lowerName];
+          } else {
+            crop.translatedName = crop.name;
+          }
+        });
+      }
+
+      // Form handlers
+      function handleLogin(event) {
+        event.preventDefault();
+        
+        const userType = document.getElementById("userType").value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        
+        if (!userType || !username || !password) {
+          showNotification(getTranslation("notifications.fillAllFields"), "error");
+          return false;
+        }
+        
+        isLoggedIn = true;
+        currentUser = {
+          type: userType,
+          username: username
+        };
+        
+        document.getElementById("loginPage").style.display = "none";
+        
+        if (userType === "farmer") {
+          document.getElementById("farmerDetailsPage").style.display = "block";
+          displayFarmerCrops();
+        } else {
+          loadCustomerMarket();
+        }
+        
+        return false;
+      }
+
+      function handleCropSubmit(event) {
+        event.preventDefault();
+        
+        const cropName = document.getElementById("cropName").value;
+        const cropQuantity = parseInt(document.getElementById("cropQuantity").value);
+        const cropPrice = parseInt(document.getElementById("cropPrice").value);
+        const cropImage = document.getElementById("cropImage").value || 
+          "https://via.placeholder.com/300x200?text=Crop+Image";
+        
+        crops.push({
+          name: cropName,
+          translatedName: cropName, // Will be updated by translateCropNames
+          quantity: cropQuantity,
+          price: cropPrice,
+          image: cropImage,
+        });
+        
+        translateCropNames();
+        showNotification(getTranslation("notifications.cropAdded"), "success");
+        document.getElementById("cropForm").reset();
+        displayFarmerCrops();
+        
+        return false;
+      }
+
+      // Navigation functions
+      function showPage(page) {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("farmerDetailsPage").style.display = "none";
+        document.getElementById("customerMarketPage").style.display = "none";
+        
+        if (!isLoggedIn && page !== "home") {
+          showNotification(getTranslation("notifications.loginFirst"), "error");
+          document.getElementById("loginPage").style.display = "block";
+          return;
+        }
+        
+        switch (page) {
+          case "home":
+            if (isLoggedIn) {
+              if (currentUser.type === "farmer") {
+                document.getElementById("farmerDetailsPage").style.display = "block";
+                displayFarmerCrops();
+              } else {
+                document.getElementById("customerMarketPage").style.display = "block";
+                loadCustomerMarket();
+              }
+            } else {
+              document.getElementById("loginPage").style.display = "block";
+            }
+            break;
+          case "cart":
+            document.getElementById("customerMarketPage").style.display = "block";
+            loadCustomerMarket();
+            setTimeout(() => {
+              document.getElementById("cartSection").scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }, 100);
+            break;
+          case "orders":
+            document.getElementById("customerMarketPage").style.display = "block";
+            loadCustomerMarket();
+            showNotification(getTranslation("notifications.comingSoon"), "info");
+            break;
+          case "contact":
+            showNotification(getTranslation("notifications.comingSoon"), "info");
+            break;
+        }
+      }
+
+      function logout() {
+        isLoggedIn = false;
+        currentUser = null;
+        cart = [];
+        updateCart();
+        updateCartCount();
+        document.getElementById("loginPage").style.display = "block";
+        document.getElementById("farmerDetailsPage").style.display = "none";
+        document.getElementById("customerMarketPage").style.display = "none";
+        showNotification(getTranslation("notifications.loggedOut"), "success");
+      }
+
+      // Farmer functions
+      function displayFarmerCrops() {
+        const farmerCropList = document.getElementById("farmerCropList");
+        farmerCropList.innerHTML = "";
+        
+        if (crops.length === 0) {
+          farmerCropList.innerHTML = `
+            <div class="empty-state">
+              <p>${getTranslation("farmer.noCrops")}</p>
+              <p>${getTranslation("farmer.addCropPrompt")}</p>
+            </div>
+          `;
+          return;
+        }
+
+        crops.forEach((crop, index) => {
+          const cropCard = document.createElement("div");
+          cropCard.className = "crop-card";
+          cropCard.innerHTML = `
+            <img src="${crop.image}" alt="${crop.translatedName || crop.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Crop+Image'">
+            <div class="crop-card-content">
+              <h3>${crop.translatedName || crop.name}</h3>
+              <p class="price">₹${crop.price}/${getTranslation("farmer.kg")}</p>
+              <p>${getTranslation("farmer.available")}: ${crop.quantity} ${getTranslation("farmer.kg")}</p>
+              <button class="btn-secondary" onclick="editCrop(${index})">${getTranslation("farmer.edit")}</button>
+            </div>
+          `;
+          farmerCropList.appendChild(cropCard);
+        });
+      }
+
+      function editCrop(index) {
+        const crop = crops[index];
+        document.getElementById("cropName").value = crop.name;
+        document.getElementById("cropQuantity").value = crop.quantity;
+        document.getElementById("cropPrice").value = crop.price;
+        document.getElementById("cropImage").value = crop.image;
+        
+        // Scroll to the form
+        document.querySelector(".login-container").scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        
+        // Remove the crop from the list (it will be re-added when form is submitted)
+        crops.splice(index, 1);
+        displayFarmerCrops();
+      }
+
+      // Customer functions
+      function loadCustomerMarket() {
+        document.getElementById("customerMarketPage").style.display = "block";
+        const cropList = document.getElementById("cropListDisplay");
+        cropList.innerHTML = "";
+
+        if (crops.length === 0) {
+          cropList.innerHTML = `
+            <div class="empty-state">
+              <p>${getTranslation("market.noCrops")}</p>
+              <p>${getTranslation("market.checkLater")}</p>
+            </div>
+          `;
+          return;
+        }
+
+        crops.forEach((crop, index) => {
+          if (crop.quantity <= 0) return; // Skip out of stock items
+          
+          const cropCard = document.createElement("div");
+          cropCard.className = "crop-card";
+          cropCard.innerHTML = `
+            <img src="${crop.image}" alt="${crop.translatedName || crop.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Crop+Image'">
+            <div class="crop-card-content">
+              <h3>${crop.translatedName || crop.name}</h3>
+              <p class="price">₹${crop.price}/${getTranslation("farmer.kg")}</p>
+              <p>${getTranslation("market.available")}: ${crop.quantity} ${getTranslation("farmer.kg")}</p>
+              <div class="quantity">
+                <label for="buy${index}">${getTranslation("market.quantity")}</label>
+                <input 
+                  type="number" 
+                  id="buy${index}" 
+                  min="1" 
+                  max="${crop.quantity}" 
+                  value="1" 
+                  placeholder="${getTranslation("market.quantityPlaceholder")}"
+                >
+                <button onclick="addToCart(${index})">${getTranslation("market.addToCart")}</button>
+              </div>
+            </div>
+          `;
+          cropList.appendChild(cropCard);
+        });
+        
+        updateCartVisibility();
+      }
+
+      function addToCart(index) {
+        const buyQuantity = parseInt(document.getElementById(`buy${index}`).value);
+        const crop = crops[index];
+
+        if (!buyQuantity || buyQuantity <= 0 || buyQuantity > crop.quantity) {
+          showNotification(getTranslation("notifications.invalidQuantity"), "error");
+          return;
+        }
+
+        // Check if item already exists in cart
+        const existingItemIndex = cart.findIndex(item => item.name === crop.name);
+        
+        if (existingItemIndex !== -1) {
+          // Update existing item
+          cart[existingItemIndex].quantity += buyQuantity;
+          cart[existingItemIndex].total = cart[existingItemIndex].quantity * cart[existingItemIndex].price;
+        } else {
+          // Add new item
+          const cartItem = {
+            name: crop.name,
+            translatedName: crop.translatedName || crop.name,
+            quantity: buyQuantity,
+            price: crop.price,
+            total: crop.price * buyQuantity,
+          };
+          cart.push(cartItem);
+        }
+        
+        updateCart();
+        updateCartCount();
+        showNotification(`${getTranslation("notifications.itemAdded")}: ${buyQuantity}${getTranslation("farmer.kg")} ${crop.translatedName || crop.name}`, "success");
+      }
+
+      function updateCart() {
+        const cartItems = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+        const cartEmpty = document.getElementById("cartEmpty");
+        let total = 0;
+
+        cartItems.innerHTML = "";
+        
+        if (cart.length === 0) {
+          cartEmpty.style.display = "block";
+          cartTotal.textContent = `${getTranslation("cart.total").replace("0", "0")}`;
+          return;
+        }
+        
+        cartEmpty.style.display = "none";
+        
+        cart.forEach((item, index) => {
+          const cartItemDiv = document.createElement("div");
+          cartItemDiv.className = "cart-item";
+          cartItemDiv.innerHTML = `
+            <div class="cart-item-details">
+              <strong>${item.translatedName || item.name}</strong>: ${item.quantity} ${getTranslation("farmer.kg")} × ₹${item.price} = ₹${item.total}
+            </div>
+            <div class="cart-item-actions">
+              <button class="btn-secondary" onclick="updateCartItem(${index}, -1)">−</button>
+              <button class="btn-secondary" onclick="updateCartItem(${index}, 1)">+</button>
+              <button class="btn-danger" onclick="removeFromCart(${index})">×</button>
+            </div>
+          `;
+          cartItems.appendChild(cartItemDiv);
+          total += item.total;
+        });
+
+        cartTotal.textContent = `${getTranslation("cart.total").replace("0", total)}`;
+      }
+      
+      function updateCartItem(index, change) {
+        const item = cart[index];
+        const crop = crops.find(c => c.name === item.name);
+        
+        if (!crop) return;
+        
+        const newQuantity = item.quantity + change;
+        
+        if (newQuantity <= 0) {
+          removeFromCart(index);
+          return;
+        }
+        
+        if (newQuantity > crop.quantity) {
+          showNotification(`${getTranslation("notifications.onlyAvailable", { quantity: crop.quantity, name: crop.translatedName || crop.name })}`, "error");
+          return;
+        }
+        
+        cart[index].quantity = newQuantity;
+        cart[index].total = newQuantity * item.price;
+        
+        updateCart();
+        updateCartCount();
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+        updateCartCount();
+      }
+
+      function updateCartCount() {
+        const cartCountElement = document.getElementById("cartCount");
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCountElement.textContent = count;
+      }
+      
+      function updateCartVisibility() {
+        const cartSection = document.getElementById("cartSection");
+        if (!isLoggedIn || (currentUser && currentUser.type === "farmer")) {
+          cartSection.style.display = "none";
+        } else {
+          cartSection.style.display = "block";
+        }
+      }
+
+      function checkout() {
+        if (cart.length === 0) {
+          showNotification(getTranslation("notifications.emptyCart"), "error");
+          return;
+        }
+
+        let billContent = `<div class="bill-details">`;
+        let total = 0;
+
+        cart.forEach((item) => {
+          billContent += `
+            <div class="bill-item">
+              <span>${item.translatedName || item.name} (${item.quantity} ${getTranslation("farmer.kg")} × ₹${item.price})</span>
+              <span>₹${item.total}</span>
+            </div>
+          `;
+          total += item.total;
+
+          // Update crop quantity
+          const cropIndex = crops.findIndex((crop) => crop.name === item.name);
+          if (cropIndex !== -1) {
+            crops[cropIndex].quantity -= item.quantity;
+          }
+        });
+
+        billContent += `<div class="bill-total">${getTranslation("bill.total")} ₹${total}</div>`;
+        billContent += `</div>`;
+
+        document.getElementById("billDetails").innerHTML = billContent;
+        document.getElementById("billModal").style.display = "block";
+
+        // Save order to history
+        const order = {
+          id: Date.now(),
+          items: [...cart],
+          total: total,
+          date: new Date().toLocaleDateString()
+        };
+        orders.push(order);
+        
+        // Clear cart
+        cart = [];
+        updateCart();
+        updateCartCount();
+        
+        // Refresh market display with updated quantities
+        loadCustomerMarket();
+      }
+
+      function closeBill() {
+        document.getElementById("billModal").style.display = "none";
+      }
+      
+      function downloadBill() {
+        showNotification(getTranslation("notifications.receiptDownloaded"), "success");
+        closeBill();
+      }
+      
+      // Utility functions
+      function showNotification(message, type = "info") {
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.textContent = message;
+        notification.style.position = "fixed";
+        notification.style.bottom = "20px";
+        notification.style.right = "20px";
+        notification.style.padding = "12px 20px";
+        notification.style.borderRadius = "4px";
+        notification.style.zIndex = "1000";
+        notification.style.maxWidth = "300px";
+        notification.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+        notification.style.transition = "all 0.3s ease";
+        notification.style.opacity = "0";
+        notification.style.transform = "translateY(20px)";
+        
+        // Set color based on type
+        switch(type) {
+          case "success":
+            notification.style.backgroundColor = "#4caf50";
+            notification.style.color = "white";
+            break;
+          case "error":
+            notification.style.backgroundColor = "#f44336";
+            notification.style.color = "white";
+            break;
+          case "info":
+          default:
+            notification.style.backgroundColor = "#2196f3";
+            notification.style.color = "white";
+        }
+        
+        // Add to DOM
+        document.body.appendChild(notification);
+        
+        // Trigger animation
+        setTimeout(() => {
+          notification.style.opacity = "1";
+          notification.style.transform = "translateY(0)";
+        }, 10);
+        
+        // Remove after delay
+        setTimeout(() => {
+          notification.style.opacity = "0";
+          notification.style.transform = "translateY(20px)";
+          
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 3000);
+      }
+
+      // Initialize translations
+      translateCropNames();
+    </script>
+  </body>
+</html>
+
